@@ -1,6 +1,13 @@
-// Import stylesheets
-import './style.css';
+const hello = () => {
+  document.querySelector('h1').innerHTML = 'Best JS Series';
+};
 
-// Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
+const changeMe = setTimeout(hello, 2000);
+
+const stop = function () {
+  document
+    .querySelector('#stop')
+    .addEventListener('click', clearTimeout(changeMe));
+
+  console.log('Stopped');
+};
