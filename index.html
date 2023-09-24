@@ -7,12 +7,44 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Start should change background color every second</h1>
+    <!-- <h1>Start should change background color every second</h1> -->
 
+    <h1>Generate Random Color</h1>
     <button id="start">Start</button>
     <button id="stop">Stop</button>
     <script>
-      const hello = () => {
+      const randomColor = function () {
+        const hex = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += hex[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
+      let intervalId;
+
+      const startChangingColor = function () {
+        if (!intervalId) {
+          intervalId = setInterval(getColor, 1000);
+        }
+         function getColor() {
+          document.body.style.backgroundColor = randomColor();
+        };
+      };
+
+      const stopChangeColor = function () {
+        clearInterval(intervalId);
+        intervalId = null;
+      };
+      document
+        .querySelector('#start')
+        .addEventListener('click', startChangingColor);
+
+      document
+        .querySelector('#stop')
+        .addEventListener('click', stopChangeColor);
+
+      /*  const hello = () => {
         document.querySelector('h1').innerHTML = 'Best JS Series';
       };
 
@@ -22,7 +54,7 @@
       stopButton.addEventListener('click', function () {
         clearTimeout(changeMe);
         console.log('Stopped');
-      });
+      }); */
     </script>
   </body>
 </html>
